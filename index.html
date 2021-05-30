@@ -13,6 +13,7 @@
     <div id="button-bar"></div>
     <svg id="graphchart" height="200" width="250"style="margin-top:20px"></svg>
     <svg height="100" width="600" id="slider-time"></svg>
+    <svg id="graphchart2" height="200" width="250"style="margin-top:20px"></svg>
     
 
 <script>
@@ -28,6 +29,7 @@ let annotations = svg.append("g").attr("id","annotations");
 let chartArea = svg.append("g").attr("id","lines")
                    .attr("transform",`translate(${margin.left},${margin.top})`);   
 const graphArea = d3.select("svg#graphchart");
+const graphArea2 = d3.select("svg#graphchart2");
                   
 // fetch data, parse date format
 d3.json("sampledata.json",d3.autoType).then(
@@ -135,7 +137,7 @@ d3.json("sampledata.json",d3.autoType).then(
 
     data=getdateData(data,d3.timeFormat('%d')(val) - 0)
 
-    graphArea.append("path")
+    graphArea2.append("path")
            .datum(data)
            .attr("class", "line")
            .attr("fill", "none")
@@ -150,11 +152,11 @@ d3.json("sampledata.json",d3.autoType).then(
   graphArea.append("text")
            .attr("x",25)
            .attr("y",25)
-           .text("library")
+           .text("dorm")
   graphArea.append("text")
            .attr("x",25)
            .attr("y",175)
-           .text("dorm")
+           .text("library")
   graphArea.append("text")
            .attr("x",175)
            .attr("y",25)
@@ -163,6 +165,24 @@ d3.json("sampledata.json",d3.autoType).then(
            .attr("x",175)
            .attr("y",175)
            .text("gate")
+
+  graphArea2.append("text")
+           .attr("x",25)
+           .attr("y",25)
+           .text("dorm")
+  graphArea2.append("text")
+           .attr("x",25)
+           .attr("y",175)
+           .text("library")
+  graphArea2.append("text")
+           .attr("x",175)
+           .attr("y",25)
+           .text("cateen")
+  graphArea2.append("text")
+           .attr("x",175)
+           .attr("y",175)
+           .text("gate")
+
 
   d3.select("div#button-bar")
       .append("button")
